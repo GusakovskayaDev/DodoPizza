@@ -10,7 +10,7 @@
   --color-popover-foreground: oklch(20% 0.029 70.75deg);
   --color-primary: oklch(70.75% 0.205 55.05deg);
   --color-primary-foreground: oklch(97.8% 0.009 84.77deg);
-  --color-secondary: oklch(98% 0.205 84.77deg);
+  --color-secondary: oklch(97.99% 0.015 70.89deg);
   --color-secondary-foreground: oklch(10% 0.01 84.77deg);
   --color-muted: oklch(95.9% 0.005 84.77deg);
   --color-muted-foreground: oklch(44.7% 0.005 70.75deg);
@@ -69,7 +69,7 @@ html {
     @apply border-border;
   }
   body {
-    @apply bg-[color:var(--color-background)] text-[color:var(--color-foreground)]; /* Используем var() напрямую */
+    @apply bg-[color:var(--color-background)] text-[color:var(--color-foreground)];
   }
 }
 
