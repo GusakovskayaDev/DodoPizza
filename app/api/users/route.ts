@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 
 if (!process.env.DATABASE_URL) {
@@ -19,4 +19,32 @@ export async function GET() {
   } finally {
     await prisma.$disconnect();
   }
+}
+
+export async function POST(request: NextRequest){
+  try {
+    const data = await request.json();
+    const { email, fullName, password } = data;
+
+    if (!email) {
+      return NextResponse.json({ error: 'Email is required' }, { status: 400 });
+    }
+    if (!fullName) {
+      return NextResponse.json({ error: 'Name is required' }, { status: 400 });
+    }
+    if (!password) {
+      return NextResponse.json({ error: 'Password is required' }, { status: 400 });
+    }
+
+    const user = await prisma.user.create({
+      data
+    });
+
+      return NextResponse.json(user, { status: 201 });
+    } catch (error) {
+      console.error('Ошибка при создании пользователя:', error);
+      return NextResponse.json({ error: 'Failed to create user' }, { status: 500 });
+    } finally {
+      await prisma.$disconnect();
+    }
 }
