@@ -5,7 +5,7 @@ if (!process.env.DATABASE_URL) {
   throw new Error('❌ DATABASE_URL не задан в .env');
 }
 
-const prisma = new PrismaClient({
+export const prisma = new PrismaClient({
   datasourceUrl: process.env.DATABASE_URL,
 });
 
