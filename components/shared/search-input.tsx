@@ -28,6 +28,12 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
     });
   }, 250, [searchQuery]);
 
+  const onClickItem = () => {
+    setFocused(false);
+    setSearchQuery('');
+    setProducts([]);
+  }
+
   return (
     <>
       {focused && <div className="fixed top-0 left-0 bottom-0 right-0 bg-black/50 z-30"/>}
@@ -45,7 +51,7 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
 
         {products.length > 0 && <div className={cn('absolute w-full bg-white rounded-2xl py-2 top-14 shadow-md transition-all duration-200 invisible opacity-0 z-30', focused && 'visible opacity-100 top-12',)}>
           {products.map(product => (
-              <Link key={product.id} href={`/product/${product.id}`} className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10">
+              <Link onClick={onClickItem} key={product.id} href={`/product/${product.id}`} className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10">
                 <img className='rounded-sm h-8 w-8' src={product.imageUrl} width={32} height={32} alt={product.name}/>
                 <span>{product.name}</span>
               </Link>
