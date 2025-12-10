@@ -7,13 +7,13 @@ import { Input, Skeleton } from "../ui";
 interface Props {
   title: string,
   items: FilterChecboxProps[],
-  defaultItems: FilterChecboxProps[],
+  defaultItems?: FilterChecboxProps[],
   limit?: number,
   loading?: boolean,
   searchInputPlaceholder?: string,
   onClickCheckbox?: (id: string) => void;
   defaultValue?: string[];
-  selectedIds?: Set<string>,
+  selected?: Set<string>,
   className?: string,
   name?: string,
 }
@@ -28,7 +28,7 @@ export const CheckboxFilterGroup: React.FC<Props> = (
     searchInputPlaceholder = 'Поиск...',
     onClickCheckbox,
     defaultValue,
-    selectedIds,
+    selected,
     className,
     name,
   }
@@ -54,7 +54,7 @@ export const CheckboxFilterGroup: React.FC<Props> = (
 
   const list = showAll 
   ? items.filter((item) => item.text.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()))
-  : defaultItems.slice(0, limit);
+  : (defaultItems || items).slice(0, limit);
   
   return (
     <div className={className}>
@@ -73,7 +73,7 @@ export const CheckboxFilterGroup: React.FC<Props> = (
               text={item.text}
               value={item.value}
               endAdornment={item.endAdornment}
-              checked={selectedIds?.has(item.value)}
+              checked={selected?.has(item.value)}
               onCheckedChange={() => onClickCheckbox?.(item.value)}
               name={name}
             />
