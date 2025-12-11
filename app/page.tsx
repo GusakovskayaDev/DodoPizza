@@ -1,7 +1,19 @@
 import { Container, Filters, Title, TopBar } from "@/components/shared";
 import { ProductsGroupList } from "@/components/shared/products-group-list";
+import { prisma } from "@/lib/prisma";
 
-export default function Home() {
+export default async function Home() {
+  const categories = await prisma.category.findMany({
+    include: {
+      products: {
+        include: {
+          ingredients: true,
+          variant: true,
+        }
+      }
+    }
+  });
+
   return (
     <>
       <Container className="mt-10">
@@ -17,109 +29,18 @@ export default function Home() {
           </div>
           <div className="flex-1">
             <div className="flex flex-col gap-16">
-              <ProductsGroupList title="Пиццы" items={[
-                {
-                id: 1,
-                name: "Чесночный цыпленок",
-                imageUrl: 'https://media.dodostatic.net/image/r:233x233/0198bf24170179679a7872f2ddf16d18.avif',
-                price: 550,
-                items: [{ price: 550 }]
-              },
-              {
-                id: 2,
-                name: "Чесночный цыпленок",
-                imageUrl: 'https://media.dodostatic.net/image/r:233x233/0198bf24170179679a7872f2ddf16d18.avif',
-                price: 550,
-                items: [{ price: 550 }]
-              },
-              {
-                id: 3,
-                name: "Чесночный цыпленок",
-                imageUrl: 'https://media.dodostatic.net/image/r:233x233/0198bf24170179679a7872f2ddf16d18.avif',
-                price: 550,
-                items: [{ price: 550 }]
-              },
-              {
-                id: 4,
-                name: "Чесночный цыпленок",
-                imageUrl: 'https://media.dodostatic.net/image/r:233x233/0198bf24170179679a7872f2ddf16d18.avif',
-                price: 550,
-                items: [{ price: 550 }]
-              },
-              {
-                id: 5,
-                name: "Чесночный цыпленок",
-                imageUrl: 'https://media.dodostatic.net/image/r:233x233/0198bf24170179679a7872f2ddf16d18.avif',
-                price: 550,
-                items: [{ price: 550 }]
-              },
-              {
-                id: 6,
-                name: "Чесночный цыпленок",
-                imageUrl: 'https://media.dodostatic.net/image/r:233x233/0198bf24170179679a7872f2ddf16d18.avif',
-                price: 550,
-                items: [{ price: 550 }]
-              },
-              {
-                id: 7,
-                name: "Чесночный цыпленок",
-                imageUrl: 'https://media.dodostatic.net/image/r:233x233/0198bf24170179679a7872f2ddf16d18.avif',
-                price: 550,
-                items: [{ price: 550 }]
-              }
-              ]} categoryId={1} />
-
-              <ProductsGroupList title="Комбо" items={[
-                {
-                id: 1,
-                name: "Чесночный цыпленок",
-                imageUrl: 'https://media.dodostatic.net/image/r:233x233/0198bf24170179679a7872f2ddf16d18.avif',
-                price: 550,
-                items: [{ price: 550 }]
-              },
-              {
-                id: 2,
-                name: "Чесночный цыпленок",
-                imageUrl: 'https://media.dodostatic.net/image/r:233x233/0198bf24170179679a7872f2ddf16d18.avif',
-                price: 550,
-                items: [{ price: 550 }]
-              },
-              {
-                id: 3,
-                name: "Чесночный цыпленок",
-                imageUrl: 'https://media.dodostatic.net/image/r:233x233/0198bf24170179679a7872f2ddf16d18.avif',
-                price: 550,
-                items: [{ price: 550 }]
-              },
-              {
-                id: 4,
-                name: "Чесночный цыпленок",
-                imageUrl: 'https://media.dodostatic.net/image/r:233x233/0198bf24170179679a7872f2ddf16d18.avif',
-                price: 550,
-                items: [{ price: 550 }]
-              },
-              {
-                id: 5,
-                name: "Чесночный цыпленок",
-                imageUrl: 'https://media.dodostatic.net/image/r:233x233/0198bf24170179679a7872f2ddf16d18.avif',
-                price: 550,
-                items: [{ price: 550 }]
-              },
-              {
-                id: 6,
-                name: "Чесночный цыпленок",
-                imageUrl: 'https://media.dodostatic.net/image/r:233x233/0198bf24170179679a7872f2ddf16d18.avif',
-                price: 550,
-                items: [{ price: 550 }]
-              },
-              {
-                id: 7,
-                name: "Чесночный цыпленок",
-                imageUrl: 'https://media.dodostatic.net/image/r:233x233/0198bf24170179679a7872f2ddf16d18.avif',
-                price: 550,
-                items: [{ price: 550 }]
-              }
-              ]} categoryId={2} />
+             {
+              categories.map((category) => 
+                category.products.length > 0 && (
+                   <ProductsGroupList
+                      key={category.id}
+                      title={category.name}
+                      categoryId={category.id}
+                      variant={category.products}
+                   />
+                )
+              )
+             }
             </div>
           </div>
         </div>
