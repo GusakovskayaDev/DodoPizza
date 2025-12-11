@@ -12,7 +12,10 @@ export const categories = [
     name: 'Коктейли',
   },
   {
-    name: 'Напитки',
+    name: 'Кофе',
+  },
+  {
+    name: 'Десерты',
   },
 ];
 
@@ -134,108 +137,108 @@ export const products = [
     name: 'Додстер',
     imageUrl:
       '/products/01980cb92528769295aeb186fb501f8e.avif',
-    categoryId: 1,
+    categoryId: 3,
   },
   {
     name: 'Острый Додстер',
     imageUrl:
       '/products/01980cbb11e677738af9e254a413763f.avif',
-    categoryId: 1,
+    categoryId: 3,
   },
   {
     name: 'Креветки',
     imageUrl:
       '/products/01980e9159aa74ca93e7daaa7db3e9fd.avif',
-    categoryId: 1,
+    categoryId: 3,
   },
   {
     name: 'Креветки терияки',
     imageUrl:
       '/products/0198556badcf772484ba8ef325c9f09f.avif',
-    categoryId: 1,
+    categoryId: 3,
   },
   {
     name: 'Омлет с томатами',
     imageUrl:
       '/products/01988a36bbee7743a6ca0637e674fa30.avif',
-    categoryId: 1,
+    categoryId: 2,
   },
   {
     name: 'Омлет с беконом',
     imageUrl:
       '/products/01988a27ac0578b69644066f43e3d41c.avif',
-    categoryId: 1,
+    categoryId: 2,
   },
   {
     name: 'Кофе Американо',
     imageUrl:
       '/products/0198227e7648741ead340c4c96da45a4.avif',
-    categoryId: 2,
+    categoryId: 5,
   },
   {
     name: 'Кофе Капучино',
     imageUrl:
       '/products/019840b6488170018dd640026aea9961.avif',
-    categoryId: 2,
+    categoryId: 5,
   },
   {
     name: 'Кофе Латте',
     imageUrl:
       '/products/01982280dc9a778c941ba53768d94882.avif',
-    categoryId: 2,
+    categoryId: 5,
   },
   {
     name: 'Кофе Латте',
     imageUrl:
       '/products/01982280dc9a778c941ba53768d94882.avif',
-    categoryId: 2,
+    categoryId: 5,
   },
   {
     name: 'Классический молочный коктейль',
     imageUrl:
       '/products/0198227af30a72b3b2614e9da1d277a3.avif',
-    categoryId: 3,
+    categoryId: 6,
   },
   {
     name: 'Клубничный молочный коктейль',
     imageUrl:
       '/products/0199ae7135777528bca136648af27fb4.avif',
-    categoryId: 3,
+    categoryId: 6,
   },
   {
     name: 'Шоколадный молочный коктейль',
     imageUrl:
       '/products/0199864ca5fe77de868217896c71a63c.avif',
-    categoryId: 3,
+    categoryId: 6,
   },
   {
     name: 'Додобоны',
     imageUrl:
       '/products/0198ae6dbbee77e4900b92245d450a6c.avif',
-    categoryId: 4,
+    categoryId: 6,
   },
   {
     name: 'Чизкейк Нью-Йорк',
     imageUrl:
       '/products/019840ba1e6078459e4aa5777065f0bc.avif',
-    categoryId: 4,
+    categoryId: 6,
   },
   {
     name: 'Чизкейк Банановый с шоколаданым печеньем',
     imageUrl:
       '/products/0198138723e478fba518947539dbbdcb.avif',
-    categoryId: 4,
+    categoryId: 6,
   },
   {
     name: 'Маффин Соленая карамель',
     imageUrl:
       '/products/01980cc4a4aa729e88828f8db0a48711.avif',
-    categoryId: 4,
+    categoryId: 6,
   },
   {
     name: 'Маффин Три шоколада',
     imageUrl:
       '/products/01980cc4cebb707a9b91ba24195fee1d.avif',
-    categoryId: 4,
+    categoryId: 6,
   },
 ]
