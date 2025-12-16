@@ -1,9 +1,10 @@
-import { cn } from "@/lib/utils";
+
 import React from "react";
 import { Container } from "./container";
 import { Categories } from "./categories";
 import { SortPopup } from "./sort-popup";
 import { Category } from "@prisma/client";
+import { cn } from "@/shared/lib/utils";
 
 interface Props {
   categories: Category[],
