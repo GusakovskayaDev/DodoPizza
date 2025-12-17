@@ -2,7 +2,7 @@
 
 import { cn } from "@/shared/lib/utils";
 
-type Variant = {
+export type Variant = {
   name: string;
   value: string;
   disabled?: boolean;
@@ -15,7 +15,7 @@ interface Props {
   className?: string;
 }
 
-export const VariantsComponent: React.FC<Props> = ({ items, onClick, value, className }) => {
+export const GroupVariants: React.FC<Props> = ({ items, onClick, value, className }) => {
   return (
     <div className={cn('flex justify-between bg-[#F3F3F7] rounded-3xl p-1 select-none', className)}>
       {

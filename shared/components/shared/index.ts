@@ -9,7 +9,7 @@ export { Filters } from './filters';
 export { RangeSlider } from './range-slider';
 export { SearchInput } from './search-input';
 export { PizzaImage } from './pizza-image';
-export { VariantsComponent } from './variants-component';
+export { GroupVariants } from './group-variants';
 export { ChooseProductForm } from './choose-product-form';
 export { ChoosePizzaForm } from './choose-pizza-form';
 export { ProductsGroupList } from './products-group-list';
