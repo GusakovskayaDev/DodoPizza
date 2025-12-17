@@ -6,7 +6,7 @@ import { PizzaImage } from "./pizza-image";
 import { cn } from "@/shared/lib/utils";
 import { VariantsComponent } from "./variants-component";
 import { doughTypes, mapTypeDough, PizzaSize, pizzaSizes, TypeDough } from "@/shared/constants/pizza";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Ingredient, Variants } from "@prisma/client";
 import { IngredientItem } from "./ingredient-item";
 import { useSet } from "react-use";
@@ -16,7 +16,7 @@ interface Props {
   name: string;
   ingredients: Ingredient[];
   variants: Variants[];
-  onClickAddcart?: () => void;
+  onClickAddCart?: () => void;
   className?: string;
 }
 
@@ -25,7 +25,7 @@ export const ChoosePizzaForm: React.FC<Props> = ({
   name,
   ingredients,
   variants,
-  onClickAddcart,
+  onClickAddCart,
   className, 
 }) => {
   const [pizzaSize, setPizzaSize] = useState<PizzaSize>(20);
@@ -35,7 +35,9 @@ export const ChoosePizzaForm: React.FC<Props> = ({
   const textDetails = `${pizzaSize} см, ${mapTypeDough[typeDough]} тесто`;
   
   const pizzaPrice = variants.find((variant) => variant.typeDough === typeDough && variant.size === pizzaSize)?.price || 0;
-  const totalIngredientsPrice = ingredients.filter((ingredient) => selectedIngredients.has(ingredient.id)).reduce((acc, ingredient) => acc + ingredient.price, 0);
+  const totalIngredientsPrice = ingredients
+    .filter((ingredient) => selectedIngredients.has(ingredient.id))
+    .reduce((acc, ingredient) => acc + ingredient.price, 0);
 
   const totalPrice = pizzaPrice + totalIngredientsPrice;
 
@@ -45,6 +47,15 @@ export const ChoosePizzaForm: React.FC<Props> = ({
     value: variant.value,
     disabled: !availablePizzas.some((pizza) => Number(pizza.size) === Number(variant.value)),
   }));
+
+  useEffect(() => {
+    const isAvailableSize = availablePizzaSizes?.find((item) => Number(item.value) === pizzaSize && !item.disabled);
+    const availableSize = availablePizzaSizes?.find((item) => !item.disabled);
+
+    if(!isAvailableSize && availableSize){
+      setPizzaSize(Number(availableSize.value) as PizzaSize);
+    }
+  }, [typeDough]);
 
   return (
     <div className={cn('flex flex-1', className)}>

@@ -93,12 +93,6 @@ async function up(){
         {
             productId: pizza1.id,
             typeDough: 2,
-            price: 400,
-            size: 20,
-        },
-        {
-            productId: pizza1.id,
-            typeDough: 2,
             price: 500,
             size: 30,
         },
@@ -129,12 +123,6 @@ async function up(){
         {
             productId: pizza2.id,
             typeDough: 2,
-            price: 400,
-            size: 20,
-        },
-        {
-            productId: pizza2.id,
-            typeDough: 2,
             price: 500,
             size: 30,
         },
@@ -161,12 +149,6 @@ async function up(){
             typeDough: 1,
             price: 500,
             size: 40,
-        },
-        {
-            productId: pizza3.id,
-            typeDough: 2,
-            price: 400,
-            size: 20,
         },
         {
             productId: pizza3.id,
