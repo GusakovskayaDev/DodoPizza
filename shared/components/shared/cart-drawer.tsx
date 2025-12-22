@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Sheet,
   SheetClose,
@@ -10,6 +12,8 @@ import {
 import { Button } from '../ui';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { CartDrawerItem } from './cart-drawer-item';
+import { getCartItemDetails } from '@/shared/lib';
 
 interface Props {
   className?: string,
@@ -20,14 +24,18 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children, classN
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
       <SheetContent className="flex flex-col justify-between pb-0 bg-[#F4F1EE]">
-        {/* <div> */}
+
           <SheetHeader>
             <SheetTitle>
               В корзине <span className="font-bold">3 товара</span>
             </SheetTitle>
           </SheetHeader>
 
-          {/* Список товаров */}
+        <div className='mt-5 overflow-auto scrollbar flex-1'>
+          <div className='mb-2'>
+            <CartDrawerItem id={1} imageUrl={'/pizzas/11EE7D61304FAF5A98A6958F2BB2D260.webp'} details={getCartItemDetails(2, 30, [{name: 'цыпленок'}, {name: 'огурчики'}])} name={'Сырная пицца'} price={419} quantity={1}/>
+          </div>
+        </div>
 
         <SheetFooter className="bg-white p-5">
 
