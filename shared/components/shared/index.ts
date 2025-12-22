@@ -16,4 +16,6 @@ export { ProductsGroupList } from './products-group-list';
 export { IngredientItem } from './ingredient-item';
 export { CartButton } from './cart-button';
 export { CartDrawer } from './cart-drawer';
+export { CountButton } from './count-button';
+export { CountIconButton } from './count-icon-button';
 export * from './modals';
