@@ -5,7 +5,8 @@ import { Title } from "./title"
 import { ProductCard } from "./product-card"
 import { useEffect, useRef } from 'react';
 import { cn } from '@/shared/lib/utils';
-import { useCategoryStore } from '@/shared/store/category';
+import { useCategoryStore } from '@/shared/store';
+
 
 interface Props {
   title: string,
