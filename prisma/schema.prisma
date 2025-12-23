@@ -73,7 +73,7 @@ model Cart {
   userId Int? @unique
   token String
   totalAmount Int @default(0)
-  item CartItem[]
+  items CartItem[]
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt
 }
