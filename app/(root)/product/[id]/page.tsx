@@ -1,5 +1,5 @@
 
-import { Container, PizzaImage, Title, VariantsComponent } from "@/shared/components/shared";
+import { Container, GroupVariants, PizzaImage, Title } from "@/shared/components/shared";
 import { prisma } from "@/shared/lib/prisma";
 import { notFound } from "next/navigation";
 
@@ -18,7 +18,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
         <div className="w-[490px] bg-[#FCFCFC] p-7">
           <Title text={product.name} size="md" className="font-extrabold mb-1"/>
           <p className="text-gray-400">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati, omnis.</p>
-          <VariantsComponent value="2" items={[
+          <GroupVariants value="2" items={[
             {
               name: 'Маленькая',
               value: '1'

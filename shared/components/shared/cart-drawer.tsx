@@ -17,20 +17,27 @@ import { useEffect } from 'react';
 import { useCartStore } from '@/shared/store';
 import { PizzaSize, TypeDough } from '@/shared/constants/pizza';
 import { useShallow } from 'zustand/shallow';
+import { updateItemQuantity } from '@/shared/services/cart';
 
 export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
 
-const { totalAmount, fetchCartItems, items } = useCartStore(
+const { totalAmount, fetchCartItems, items, updateItemQuantity } = useCartStore(
   useShallow((state) => ({
     totalAmount: state.totalAmount,
     fetchCartItems: state.fetchCartItems,
     items: state.items,
+    updateItemQuantity: state.updateItemQuantity,
   }))
 );
   
   useEffect(() => {
     fetchCartItems();
   }, [fetchCartItems]);
+
+  const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
+    const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
+    updateItemQuantity(id, newQuantity);
+  }
 
   return (
     <Sheet>
@@ -39,7 +46,7 @@ const { totalAmount, fetchCartItems, items } = useCartStore(
 
           <SheetHeader>
             <SheetTitle>
-              В корзине <span className="font-bold">3 товара</span>
+              В корзине <span className="font-bold">{items.length} товара</span>
             </SheetTitle>
           </SheetHeader>
 
@@ -59,6 +66,7 @@ const { totalAmount, fetchCartItems, items } = useCartStore(
               : ''} name={item.name} 
               price={item.price} 
               quantity={item.quantity}
+              onClickCountButton={(type) => onClickCountButton(item.id, item.quantity, type)}
             />
             </div>
           ))
