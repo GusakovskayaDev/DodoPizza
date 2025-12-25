@@ -17,16 +17,16 @@ import { useEffect } from 'react';
 import { useCartStore } from '@/shared/store';
 import { PizzaSize, TypeDough } from '@/shared/constants/pizza';
 import { useShallow } from 'zustand/shallow';
-import { updateItemQuantity } from '@/shared/services/cart';
 
 export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
 
-const { totalAmount, fetchCartItems, items, updateItemQuantity } = useCartStore(
+const { totalAmount, fetchCartItems, items, updateItemQuantity, removeCartItem } = useCartStore(
   useShallow((state) => ({
     totalAmount: state.totalAmount,
     fetchCartItems: state.fetchCartItems,
     items: state.items,
     updateItemQuantity: state.updateItemQuantity,
+    removeCartItem: state.removeCartItem,
   }))
 );
   
@@ -67,6 +67,7 @@ const { totalAmount, fetchCartItems, items, updateItemQuantity } = useCartStore(
               price={item.price} 
               quantity={item.quantity}
               onClickCountButton={(type) => onClickCountButton(item.id, item.quantity, type)}
+              onClickRemove={() => removeCartItem(item.id)}
             />
             </div>
           ))
