@@ -84,7 +84,7 @@ model CartItem {
   cartId Int
   variant Variants @relation(fields: [variantId], references: [id])
   variantId Int
-  quantity Int
+  quantity Int @default(1)
   ingredients Ingredient[]
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt
