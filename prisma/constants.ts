@@ -188,12 +188,6 @@ export const products = [
     categoryId: 5,
   },
   {
-    name: 'Кофе Латте',
-    imageUrl:
-      '/products/01982280dc9a778c941ba53768d94882.avif',
-    categoryId: 5,
-  },
-  {
     name: 'Классический молочный коктейль',
     imageUrl:
       '/products/0198227af30a72b3b2614e9da1d277a3.avif',

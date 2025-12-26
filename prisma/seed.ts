@@ -169,6 +169,102 @@ async function up(){
             price: 249,
             size: null,
         },
+        {
+            productId: 2,
+            typeDough: null,
+            price: 279,
+            size: null,
+        },
+        {
+            productId: 3,
+            typeDough: null,
+            price: 229,
+            size: null,
+        },
+        {
+            productId: 4,
+            typeDough: null,
+            price: 379,
+            size: null,
+        },
+        {
+            productId: 5,
+            typeDough: null,
+            price: 229,
+            size: null,
+        },
+        {
+            productId: 6,
+            typeDough: null,
+            price: 249,
+            size: null,
+        },
+        {
+            productId: 7,
+            typeDough: null,
+            price: 99,
+            size: null,
+        },
+        {
+            productId: 8,
+            typeDough: null,
+            price: 149,
+            size: null,
+        },
+        {
+            productId: 9,
+            typeDough: null,
+            price: 149,
+            size: null,
+        },
+        {
+            productId: 10,
+            typeDough: null,
+            price: 179,
+            size: null,
+        },
+        {
+            productId: 11,
+            typeDough: null,
+            price: 199,
+            size: null,
+        },
+        {
+            productId: 12,
+            typeDough: null,
+            price: 199,
+            size: null,
+        },
+        {
+            productId: 13,
+            typeDough: null,
+            price: 229,
+            size: null,
+        },
+        {
+            productId: 14,
+            typeDough: null,
+            price: 299,
+            size: null,
+        },
+        {
+            productId: 15,
+            typeDough: null,
+            price: 299,
+            size: null,
+        },
+        {
+            productId: 16,
+            typeDough: null,
+            price: 99,
+            size: null,
+        },
+        {
+            productId: 17,
+            typeDough: null,
+            price: 119,
+            size: null,
+        },
     ]
   });
 

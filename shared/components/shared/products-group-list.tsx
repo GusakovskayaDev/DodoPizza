@@ -10,7 +10,7 @@ import { useCategoryStore } from '@/shared/store';
 
 interface Props {
   title: string,
-  variant: any[],
+  products: any[],
   listClassName?: string,
   categoryId: number,
   className?: string,
@@ -18,7 +18,7 @@ interface Props {
 
 export const ProductsGroupList: React.FC<Props> = ({
   title,
-  variant,
+  products,
   listClassName,
   categoryId,
   className,
@@ -40,13 +40,13 @@ export const ProductsGroupList: React.FC<Props> = ({
       <Title text={title} size="lg" className="font-extrabold mb-5"/>
 
       <div className={cn('grid grid-cols-3 gap-[50px]', listClassName)}>
-        {variant.map((product, i) => (
+        {products.map((product, i) => (
           <ProductCard
             key = {product.id}
             id = {product.id}
             name = {product.name}
             imageUrl = {product.imageUrl}
-            price = {product.price}
+            price = {product.variant[0].price}
           />
         ))}
       </div>

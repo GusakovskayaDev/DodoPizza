@@ -35,7 +35,7 @@ export default async function Home() {
                       key={category.id}
                       title={category.name}
                       categoryId={category.id}
-                      variant={category.products}
+                      products={category.products}
                    />
                 )
               )
