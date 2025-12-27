@@ -7,8 +7,6 @@ export const findOrCreateCart = async(token: string) => {
     },
   });
 
-  console.log('Нашлась ли корзинка??? ', userCart);
-
   if(!userCart){
     userCart = await prisma.cart.create({
       data:{

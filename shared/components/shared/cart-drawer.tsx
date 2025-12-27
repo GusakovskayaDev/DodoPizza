@@ -44,34 +44,36 @@ const { totalAmount, fetchCartItems, items, updateItemQuantity, removeCartItem }
       <SheetTrigger asChild>{children}</SheetTrigger>
       <SheetContent className="flex flex-col justify-between pb-0 bg-[#F4F1EE]">
 
-          <SheetHeader>
-            <SheetTitle>
-              В корзине <span className="font-bold">{items.length} товара</span>
-            </SheetTitle>
-          </SheetHeader>
+        <SheetHeader>
+          <SheetTitle>
+            В корзине <span className="font-bold">{items.length} товара</span>
+          </SheetTitle>
+        </SheetHeader>
 
-        {
-          items.map((item) => (
-            <div className='mb-2' key={item.id}>
-            <CartDrawerItem 
-              id={item.id} 
-              imageUrl={item.imageUrl} 
-              details={
-              item.pizzaSize && item.typeDough 
-              ? getCartItemDetails(
-                item.ingredients,
-                item.typeDough as TypeDough,
-                item.pizzaSize as PizzaSize, 
-                ) 
-              : ''} name={item.name} 
-              price={item.price} 
-              quantity={item.quantity}
-              onClickCountButton={(type) => onClickCountButton(item.id, item.quantity, type)}
-              onClickRemove={() => removeCartItem(item.id)}
-            />
-            </div>
-          ))
-        }
+        <div className='h-[800px] scrollbar overflow-y-auto scroll'>
+          {
+            items.map((item) => (
+              <div className='mb-2' key={item.id}>
+                <CartDrawerItem 
+                  id={item.id} 
+                  imageUrl={item.imageUrl} 
+                  details={
+                  item.pizzaSize && item.typeDough 
+                  ? getCartItemDetails(
+                    item.ingredients,
+                    item.typeDough as TypeDough,
+                    item.pizzaSize as PizzaSize, 
+                    ) 
+                  : ''} name={item.name} 
+                  price={item.price} 
+                  quantity={item.quantity}
+                  onClickCountButton={(type) => onClickCountButton(item.id, item.quantity, type)}
+                  onClickRemove={() => removeCartItem(item.id)}
+                />
+              </div>
+            ))
+          }
+        </div>
 
         <SheetFooter className="bg-white p-5">
 

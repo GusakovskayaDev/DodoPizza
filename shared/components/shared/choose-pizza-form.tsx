@@ -16,7 +16,7 @@ interface Props {
   name: string;
   ingredients: Ingredient[];
   variants: Variants[];
-  onClickAddCart?: () => void;
+  onSubmit: (variantId: number, ingredients: number[]) => void;
   className?: string;
 }
 
@@ -25,13 +25,34 @@ export const ChoosePizzaForm: React.FC<Props> = ({
   name,
   ingredients,
   variants,
-  onClickAddCart,
+  onSubmit,
   className, 
 }) => {
   
-const { pizzaSize, typeDough, selectedIngredients, availableSizes, setPizzaSize, setTypeDough, addIngredient} = usePizzaOptions(variants);
+const { 
+  pizzaSize, 
+  typeDough, 
+  selectedIngredients, 
+  availableSizes, 
+  setPizzaSize, 
+  currentVariantId, 
+  setTypeDough, 
+  addIngredient
+} = usePizzaOptions(variants);
 
-const { totalPrice, textDetails } = getPizzaDetails(typeDough, pizzaSize, variants, ingredients, selectedIngredients);
+const { totalPrice, textDetails } = getPizzaDetails(
+  typeDough, 
+  pizzaSize, 
+  variants, 
+  ingredients, 
+  selectedIngredients
+);
+
+const handleClickAdd = () => {
+  if(currentVariantId){
+    onSubmit(currentVariantId, Array.from(selectedIngredients));
+  }
+};
 
   return (
     <div className={cn('flex flex-1', className)}>
@@ -74,7 +95,7 @@ const { totalPrice, textDetails } = getPizzaDetails(typeDough, pizzaSize, varian
         </div>
        </div>
 
-        <Button className="h-[55px] px-10 text-base rounded-[18px] w-full mt-10">
+        <Button onClick={handleClickAdd} className="h-[55px] px-10 text-base rounded-[18px] w-full mt-10">
           Добавить в корзину за {totalPrice} р
         </Button>
       </div>
