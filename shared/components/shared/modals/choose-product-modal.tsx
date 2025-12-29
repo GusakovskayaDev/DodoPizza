@@ -8,6 +8,8 @@ import { Dialog } from '../../ui';
 import { DialogContent, DialogTitle } from '../../ui/dialog';
 import { cn } from '@/shared/lib/utils';
 import { useCartStore } from '@/shared/store';
+import toast from 'react-hot-toast';
+import { useShallow } from 'zustand/shallow';
 
 interface Props {
   product: ProductWithRelations;
@@ -18,20 +20,25 @@ export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
   const router = useRouter();
   const firstVariant = product.variant[0];
   const isPizzaForm = Boolean(firstVariant.typeDough);
-  const addCartItem = useCartStore(state => state.addCartItem);
 
-  const onAddProduct = () => {
-    addCartItem({
-      variantId: firstVariant.id,
-    });
-  };
+  const [addCartItem, loading] = useCartStore(useShallow(state => [
+    state.addCartItem, state.loading
+  ]));
 
-  const onAddPizza = (variantId: number, ingredients: number[]) => {
-    addCartItem({
-      variantId,
-      ingredients,
-    });
-  };
+  const onSumbit = async (variantId?: number, ingredients?: number[]) => {
+    try {
+      await addCartItem(
+      isPizzaForm 
+      ? {variantId, ingredients} 
+      : { variantId: firstVariant.id}
+    );
+      toast.success(`${isPizzaForm ? 'Пицца' : 'Продукт'} добавлена в корзину`);
+      router.back();
+    } catch (error) {
+      toast.error(`Не удалось добавить ${isPizzaForm ? 'пиццу' : 'продукт'} в корзину`);
+      console.log(error);
+    }
+  }
 
   return (
     <Dialog open={Boolean(product)} onOpenChange={() => router.back()}>
@@ -48,14 +55,14 @@ export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
               name={product.name} 
               ingredients={product.ingredients}
               variants={product.variant}
-              onSubmit={onAddPizza}
+              onSubmit={onSumbit}
             />
           ) :
             <ChooseProductForm 
               imageUrl={product.imageUrl} 
               name={product.name} 
               price={firstVariant.price}
-              onSubmit={onAddProduct}
+              onSubmit={onSumbit}
             />
        }
       </DialogContent>
