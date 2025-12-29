@@ -56,6 +56,7 @@ export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
               ingredients={product.ingredients}
               variants={product.variant}
               onSubmit={onSumbit}
+              loading={loading}
             />
           ) :
             <ChooseProductForm 
@@ -63,6 +64,7 @@ export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
               name={product.name} 
               price={firstVariant.price}
               onSubmit={onSumbit}
+              loading={loading}
             />
        }
       </DialogContent>
