@@ -1,18 +1,11 @@
 import { Container, Filters, ProductsGroupList, Title, TopBar } from "@/shared/components/shared";
-import { prisma } from "@/shared/lib/prisma";
+import { findPizzas } from "@/shared/lib";
+import { GetSearchParams } from "@/shared/lib/find-pizzas";
 import { Suspense } from "react";
 
-export default async function Home() {
-  const categories = await prisma.category.findMany({
-    include: {
-      products: {
-        include: {
-          ingredients: true,
-          variant: true,
-        }
-      }
-    }
-  });
+export default async function Home({ searchParams } : {searchParams: GetSearchParams}) {
+  const params = await searchParams;
+  const categories = await findPizzas(params);
 
   return (
     <>

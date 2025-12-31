@@ -35,8 +35,8 @@ export const Filters: React.FC<Props> = ({className}) => {
           onClickCheckbox={filters.setTypeDough}
           selected={filters.typeDough}
           items={[
-            {text: 'Тонкое', value: '1'},
-            {text: 'Толстое', value: '2'},
+            {text: 'Тонкое', value: '2'},
+            {text: 'Толстое', value: '1'},
           ]}
         />
 
